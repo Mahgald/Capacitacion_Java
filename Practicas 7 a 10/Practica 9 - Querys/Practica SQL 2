@@ -1,0 +1,64 @@
+USE Nomina;
+
+/*a. Seleccionar todos los datos de todos los Empleados.
+
+SELECT * FROM Empleados;*/
+
+
+/*b. Seleccionar todos los datos de los Empleados nacidos el 19-9-1977.
+
+SELECT * FROM Empleados WHERE fechaNacimiento = '1977-09-19';*/
+
+
+/*c. Seleccionar todos los Empleados cuyo sueldo sea superior a $11.000.
+
+SELECT * FROM Empleados WHERE sueldo > 11000;*/
+
+/*d. Seleccionar la sumatoria de sueldos que deberá pagar la empresa.
+
+SELECT sum(sueldo) AS TotalSueldosAPagar FROM Empleados*/
+
+
+/*e. Seleccionar el mayor sueldo.
+
+SELECT nombre,max(sueldo) as ElQueMasCobra FROM Empleados*/
+
+
+/*f. Seleccionar nombre, dirección y teléfono de los Empleados de menor sueldo.
+
+SELECT nombre,direccion,telefono, sueldo FROM Empleados WHERE sueldo=(SELECT min(sueldo) FROM Empleados);*/
+
+
+/*g. Seleccionar nombre y fecha de nacimiento de los Empleados cuyo nombre comience con ‘Ro’.
+
+SELECT nombre,fechaNacimiento FROM Empleados WHERE nombre like 'Ro%'*/
+
+
+/*h. Insertar los siguientes Empleados
+
+INSERT INTO Empleados(nombre,direccion,telefono,fechaNacimiento,sueldo,localidad)
+	   VALUES ('Julio Perez','Calle falsa 123','011334567',1988-12-04,8900,2),
+			  ('Dante Gomez','Siempre viva 345','02224267765',1986-03-19,null,3)	*/
+
+
+/*i. Actualizar el sueldo a $20.000 de los Empleados cuya fecha de nacimiento esté entre 01-09-1980 y 01-09-1990.
+
+UPDATE Empleados SET sueldo=20000 WHERE fechaNacimiento between '1980-09-01' and '1990-09-01' */
+
+
+/*j. Eliminar al Empleado ‘Lucia Pérez’.
+
+DELETE FROM Empleados WHERE nombre like 'Lucia Perez'*/
+
+
+/*k. Eliminar a todos los Empleados de Presidente Perón.
+
+DELETE FROM Empleados WHERE Empleados.localidad=(SELECT codigoLocalidad FROM Localidades WHERE localidad like 'Presidente Peron')*/
+
+
+/*l. Eliminar a los Empleados de menor sueldo.
+
+set @minimo = (SELECT min(sueldo) FROM Empleados);
+DELETE FROM Empleados WHERE sueldo=@minimo*/
+
+	

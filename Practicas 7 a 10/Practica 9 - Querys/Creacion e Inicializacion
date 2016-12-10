@@ -1,0 +1,33 @@
+/*CREATE DATABASE Nomina*/
+
+USE Nomina;
+/*
+CREATE TABLE Empleados(
+	idEmpleado int auto_increment,
+	nombre varchar(50) not null,
+	direccion varchar(50) not null,
+	telefono varchar(50) not null,
+	fechaNacimiento date not null,
+	sueldo float null,
+	localidad int not null,
+	Primary Key (idEmpleado)
+);
+
+CREATE TABLE Localidades(
+	codigoLocalidad int auto_increment,
+	localidad varchar(30) not null,
+	Primary Key (codigoLocalidad)
+);
+
+
+INSERT INTO Empleados(nombre,direccion,telefono,fechaNacimiento,sueldo,localidad)
+	   VALUES ('Roberto Perez','Av. Mitre 750','0112234223',20-9-1988,7500,1),	
+			  ('Luis Rodriguez','Azcuenaga 233','02223332223',18-8-1980,10500,2),
+			  ('Rosa Gomez','Olivera 393','02224452678',18-9-1977,16920,1),
+			  ('Jose Luis Perales','Calle 483 entre 41 y 43','0111588339280',9-07-1970,19000,1),
+			  ('Rosalia Morales','Guateamala 2933','02225432773',16-9-1990,5500,3),	
+			  ('Lucia Perez','Juan Jose Paso 235','01142293883',19-9-1977,16700,2);
+
+INSERT INTO Localidades(localidad)
+	   VALUES ('Avellaneda'),('Lanus'),('Presidente Peron');	*/
+				

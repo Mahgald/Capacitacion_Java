@@ -1,0 +1,79 @@
+USE db_captton;
+
+/* 1 - Obtener los detalles completos de todos los productos, ordenados alfabéticamente.
+
+SELECT * FROM Productos order by nombre asc; */
+
+
+/* 2 - Obtener los detalles completos de todos los proveedores de 'Capital'
+
+SELECT nombre,domicilio,localidad FROM Proveedores where localidad='Capital';*/
+
+
+/* 3 - Obtener todos los envíos en los cuales la cantidad esta entre 200 y 300 inclusive. 
+
+SELECT * FROM Envios WHERE cantidad BETWEEN 200 AND 300 ; */
+
+
+/* 4 - Mostrar el promedio de precio de la tabla Productos.
+
+SELECT AVG(precio) AS Promedio_Precio FROM Productos;*/
+
+
+/* 5 - Indicar el monto (cantidad * precio) de todos los enviados.
+
+SELECT Productos.nombre, (Envios.cantidad*Productos.precio) AS total FROM Envios,Productos WHERE Envios.productoID = Productos.id;*/
+
+
+/* 6 - Obtener la cantidad total del producto 1 enviado por el proveedor 2
+
+SELECT sum(cantidad) AS producto1_proveedor2 FROM Envios WHERE productoID =1 AND proveedorID=2 */
+
+
+/* 7 - Obtener todos los números de los productos suministrados por algún proveedor de 'Avellaneda'.
+	
+SELECT Envios.productoID AS Producto
+	FROM Proveedores
+	INNER JOIN Envios ON Envios.proveedorID = Proveedores.id
+	WHERE Proveedores.localidad like 'Avellaneda'*/
+	
+
+/* 8 - Obtener el domicilio y localidades de los proveedores cuyos nombres contengan la letra 'I'.
+
+SELECT domicilio,localidad FROM Proveedores WHERE nombre like '%I%'*/
+
+
+/* 9 - Agregar el producto número 4, llamado 'Chocolate', de tamaño chico y con un precio de 3.50.
+
+INSERT INTO Productos (nombre,precio,tamaño)
+	   VALUES ('Chocolate',3.5,'Chico')	*/
+
+
+/* 10 - Insertar un nuevo proveedor (únicamente los campos obligatorios). 
+
+INSERT INTO Proveedores (nombre,domicilio,localidad) 
+	   VALUES ('Gonzales','9 de Julio','Capital')*/
+
+
+/* 11 - Insertar un nuevo proveedor, donde el nombre y la localidad sean 'Rosales' y 'La Plata'. 
+
+INSERT INTO Proveedores (nombre,domicilio,localidad) 
+	   VALUES ('Rosales','7 y 51','La Plata')*/
+
+
+/* 12 - Cambiar los precios de los productos de tamaño 'grande' a 18.50.
+
+UPDATE Productos SET precio=18.5 WHERE tamaño='Grande';*/
+
+
+/* 13 - Eliminar el producto número 1.
+
+DELETE FROM Envios WHERE productoID=1;
+DELETE FROM Productos WHERE id=1*/
+
+
+/* 14 - Eliminar a todos los proveedores que no han enviado productos.
+
+DELETE FROM Proveedores WHERE NOT exists 
+	  (SELECT Envios.proveedorID FROM Envios WHERE Envios.proveedorID=Proveedores.id)*/ 
+

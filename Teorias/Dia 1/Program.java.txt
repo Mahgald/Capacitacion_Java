@@ -1,0 +1,88 @@
+package com.captton.Clase1;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class Program {	
+	
+	public static void main(String[] args) 
+	{/*
+		int edad = 20;
+		String nombre = "Leandro";
+		float peso = 78.5f;
+		*/
+		final int CANTIDAD_ALUMNOS = 5;
+		
+		//int[] edadesAlumnos = {24,35,18,22,20};
+		int[] edadesAlumnos = new int[CANTIDAD_ALUMNOS];
+		String[] nombresAlumnos = new String[CANTIDAD_ALUMNOS];
+		
+		/*nombresAlumnos[0] = "Pepe";
+		int edadAlumno1 = edadesAlumnos[0];
+			*/	
+		
+		//ESCRITURA
+		//System.out.println("Ingresa tu apellido");
+		
+		//Lector
+		Scanner sc = new Scanner(System.in);
+		
+		//LECTURA
+		//String apellido = sc.nextLine();
+		
+		//System.out.println("Bienvenido "+nombre+","+apellido);
+			/*
+			 Comentarios de mas de una linea			  			 
+			 
+		if(edad >= 18)
+		{			
+			System.out.println("Usted es mayor de edad");
+		}
+		else
+		{
+			System.out.println("Usted es un pibito");
+		}*/
+		/*
+		for (int i = 0; i < nombresAlumnos.length; i++)
+		{
+			
+			System.out.println("Ingrese su nombre");
+			String name = sc.nextLine();
+			nombresAlumnos[i] = name;
+			
+			System.out.println("Ingrese su edad");
+			int edad = Integer.parseInt(sc.nextLine());
+			edadesAlumnos[i] = edad;			
+		}
+		
+		int j = 0;
+		while(j < CANTIDAD_ALUMNOS)
+		{
+			//System.out.println(nombresAlumnos[j] + " edad: "+edadesAlumnos[j]);
+			System.out.println(String.format("Alumno: %s Edad:%d",nombresAlumnos[j],edadesAlumnos[j] ));
+			j++;
+		}*/
+		
+		String palabra = "Hola";
+		String fraseNueva = palabra.concat(",Como va?");
+		System.out.println(fraseNueva);
+		
+		if(palabra.isEmpty())
+		{
+			System.out.println("NO tiene valor");
+		}
+		
+		String[] array = fraseNueva.split(",");
+		//palabra.replace(" ", "");
+		
+		for (int i = 0; i < array.length; i++)
+		{
+			System.out.println(array[i]);
+		}
+		
+		
+		
+				
+	}
+
+}

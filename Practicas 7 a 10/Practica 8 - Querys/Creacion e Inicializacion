@@ -1,0 +1,47 @@
+/*CREATE DATABASE db_captton;
+*/
+
+USE db_captton;
+/*
+CREATE TABLE Proveedores(
+	id int auto_increment,
+	nombre varchar(50) not null,
+	domicilio varchar(100),
+	localidad varchar(100),
+	primary key (id)
+);
+
+CREATE TABLE Productos(
+	id int auto_increment,
+	nombre varchar(50) not null,
+	precio decimal not null,
+	tamaño varchar(50),
+	primary key (id)
+);
+
+CREATE TABLE Envios(
+	proveedorID int,
+	productoID int,
+	cantidad int not null,
+	primary key (proveedorID,productoID),
+	foreign key (proveedorID) REFERENCES Proveedores(id),
+	foreign key (productoID) REFERENCES Productos(id)
+);*/
+
+/*INSERT INTO Proveedores (nombre,domicilio,localidad) 
+	   VALUES ('Pérez','Rivadavia 9000','Capital'),
+			  ('Jimenez','Mitre 670','Avellaneda'),	
+			  ('Lopez','Estados Unidos 500','Capital');	
+
+INSERT INTO Productos (nombre,precio,tamaño)
+	   VALUES ('Caramelo',2.5,'Chico'),	
+			  ('Gaseosa',15,'Mediano'),		
+			  ('Budin',20,'Grande');
+
+INSERT INTO Envios VALUES (1,1,500),(1,2,200),(1,3,50),(2,2,4),(2,1,50),(3,1,500),(3,3,400);
+*/
+
+
+
+
+
