@@ -44,8 +44,6 @@
 				<th>PROVINCIA</th>
 				<th>PAIS</th>
 				<th>DEPARTAMENTO</th>
-
-
 			</tr>
 
 			<%
