@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="data.ReunionDAO"%>
 <%@page import="model.Reunion"%>
 <%@page import="model.Departamento"%>
@@ -113,22 +114,18 @@
 					<div class="modal-body">
 		
 						<%
-		//List<Empleado> lista = meeting.getListaEmpleados();
-		List<Empleado> lista = EmpleadoDAO.listarEmpleado();
-						
-		lista.removeAll(meeting.getListaEmpleados());
-		//lista.removeAll(EmpleadoDAO.listarEmpleado());				
-		//lista.retainAll(EmpleadoDAO.listarEmpleado());			
-		
-		for(Empleado empl2 : meeting.getListaEmpleados()){
-			for(Empleado empleado : lista){
-				if(empleado.equals(empl2)){
-					lista.remove(empl2);
+		List<Empleado> todos = EmpleadoDAO.listarEmpleado();
+		List<Empleado> lista = new ArrayList<Empleado>();				
+		for(Empleado empleado : todos){
+			for(Empleado em : meeting.getListaEmpleados()){
+				if(!empleado.equals(em) && !lista.contains(empleado)){
+					lista.add(empleado);
 				}
 			}
+			
 		}
 		
-	
+
 	%>
 
 
@@ -145,14 +142,13 @@
 				
 			</tr>
 
-			<%
-			for (Empleado empl : lista){
-			%>
+			<% for(Empleado empleado : lista){ %>
+			
 			<tr>
-				<td><%=empl.getId()%></td>
-				<td><%=empl.getNombre()%></td>
-				<td><%=empl.getApellido()%></td>
-				<td><%=empl.getDepartamento().getNombre()%></td>
+				<td><%=empleado.getId()%></td>
+				<td><%=empleado.getNombre()%></td>
+				<td><%=empleado.getApellido()%></td>
+				<td><%=empleado.getDepartamento().getNombre()%></td>
 			
 
 			</tr>
