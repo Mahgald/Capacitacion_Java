@@ -1,3 +1,4 @@
+<%@page import="data.ReunionDAO"%>
 <%@page import="model.Reunion"%>
 <%@page import="model.Departamento"%>
 <%@page import="data.EmpleadoDAO"%>
@@ -24,7 +25,11 @@
 </head>
 <body>
 	<%
-		List<Empleado> lista = EmpleadoDAO.listarEmpleado();
+		long id = Long.parseLong(request.getParameter("idReunion"));
+	
+	
+		Reunion meeting = ReunionDAO.obtenerUnReunion(id);
+		
 	%>
 
 
@@ -32,6 +37,7 @@
 	<section class="container">
 
 	<h1>LISTADO DE EMPLEADOS</h1>
+	<h3>Tema de la reunion - <%=meeting.getTema()%> - Cantidad de empleados - <%=meeting.getListaEmpleados().size()%></h3>
 	<br>
 
 	<div class="col-md-12">
@@ -48,8 +54,8 @@
 				<th>DEPARTAMENTO</th>
 			</tr>
 
-			<%
-				for (Empleado empl : EmpleadoDAO.listarEmpleado()) {
+		<%
+				for (Empleado empl : meeting.getListaEmpleados()) {
 			%>
 			<tr>
 				<td><%=empl.getId()%></td>
@@ -66,6 +72,7 @@
 			<%
 				}
 			%>
+		
 		</table>
 	</div>
 
@@ -89,8 +96,6 @@
 
 		<button type="button" class="btn btn-danger" data-toggle="modal"
 			data-target="#eliminarEmpleado">Eliminar</button>
-			
-		<a class="btn btn-primary" href="listarReuniones.jsp">Reuniones	</a>
 
 	</div>
 
@@ -106,72 +111,58 @@
 						<h4 class="modal-title">AGREGAR EMPLEADO</h4>
 					</div>
 					<div class="modal-body">
-						<form class="form-horizontal" method="get"
-							action="altaEmpleado.jsp">
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="nombre">Nombre:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="nombre"
-										name="nombre" placeholder="Ingrese Nombre">
-								</div>
-							</div>
+		
+						<%
+		//List<Empleado> lista = meeting.getListaEmpleados();
+		List<Empleado> lista = EmpleadoDAO.listarEmpleado();
+						
+		lista.removeAll(meeting.getListaEmpleados());
+		//lista.removeAll(EmpleadoDAO.listarEmpleado());				
+		//lista.retainAll(EmpleadoDAO.listarEmpleado());			
+		
+		for(Empleado empleado : lista){
+			for(Empleado empl2 : meeting.getListaEmpleados()){
+				if(empleado.equals(empl2)){
+					lista.remove(empl2);
+				}
+			}
+		}
+		
+	
+	%>
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="apellido">Apellido:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="apellido"
-										name="apellido" placeholder="Ingrese Apellido">
-								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="fdn">Fecha de
-									Nacimiento:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="fdn" name="fdn"
-										placeholder="yyyy-mm-dd">
-								</div>
-							</div>
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="telefono">Telefono:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="telefono"
-										name="telefono" placeholder="Ingrese Telefono">
-								</div>
-							</div>
+	
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="direccion">Direccion:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="direccion"
-										name="direccion" placeholder="Ingrese Direccion">
-								</div>
-							</div>
+	<div class="">
+		<table class="table table-bordered">
+			<tr class="tablehead danger">
+				<th>ID</th>
+				<th>NOMBRE</th>
+				<th>APELLIDO</th>
+				<th>DEPARTAMENTO</th>
+				
+			</tr>
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="provincia">Provincia:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="provincia"
-										name="provincia" placeholder="Ingrese Provincia">
-								</div>
-							</div>
+			<%
+			for (Empleado empl : lista){
+			%>
+			<tr>
+				<td><%=empl.getId()%></td>
+				<td><%=empl.getNombre()%></td>
+				<td><%=empl.getApellido()%></td>
+				<td><%=empl.getDepartamento().getNombre()%></td>
+			
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="pais">Pais:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="pais" name="pais"
-										placeholder="Ingrese Pais">
-								</div>
-							</div>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+	</div>
 
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="dpto">Departamento:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="dpto" name="dpto"
-										placeholder="Ingrese nro de Depatamento">
-								</div>
-							</div>
+
 					</div>
 
 					<div class="modal-footer">
@@ -272,7 +263,7 @@
 
 	</section>
 
-		<script src="js/jquery.js"></script>
+	<script src="js/jquery.js"></script>
 
 	<script src="js/bootstrap.min.js"></script>
 </body>

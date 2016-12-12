@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="empleado")
+@Table(name="Empleado")
 public class Empleado {
 
 	@Id
@@ -35,7 +35,7 @@ public class Empleado {
 	@JoinColumn(name="idDepartamento")
 	private Departamento departamento;
 	
-	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.ALL},fetch=FetchType.EAGER)
 	@JoinTable(name="ReunionEmpleado",
 			joinColumns={@JoinColumn(name="idEmpleado")},
 			inverseJoinColumns={@JoinColumn(name="idReunion")})
@@ -111,6 +111,16 @@ public class Empleado {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+
+
+	public boolean equals(Empleado obj) {
+		if(this.getId()==obj.getId()){
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 	
 	

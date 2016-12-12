@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="reunion")
+@Table(name="Reunion")
 public class Reunion {
 
 	@Id
@@ -22,7 +22,8 @@ public class Reunion {
 	@Column(name="tema")
 	private String tema;
 	
-	@ManyToMany(mappedBy="listaReuniones")
+	//@ManyToMany(mappedBy="listaReuniones")
+	@ManyToMany(mappedBy="listaReuniones", fetch=FetchType.EAGER)
 	private List<Empleado> listaEmpleados = new ArrayList<Empleado>();
 	
 	public Reunion() {
