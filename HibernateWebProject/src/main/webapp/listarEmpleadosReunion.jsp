@@ -120,8 +120,8 @@
 		//lista.removeAll(EmpleadoDAO.listarEmpleado());				
 		//lista.retainAll(EmpleadoDAO.listarEmpleado());			
 		
-		for(Empleado empleado : lista){
-			for(Empleado empl2 : meeting.getListaEmpleados()){
+		for(Empleado empl2 : meeting.getListaEmpleados()){
+			for(Empleado empleado : lista){
 				if(empleado.equals(empl2)){
 					lista.remove(empl2);
 				}
