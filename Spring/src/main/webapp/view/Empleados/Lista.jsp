@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- Import de JSTL para utilizar los tags de Java  -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,9 @@ body {
 					<th>Telefono</th>
 					<th>Departamento</th>
 					<th>Detalles</th>
-					<tr>
+					<th>Modificar</th>
+					<th>Eliminar</th>
+				</tr>
 			
 			</thead>
 			<tbody>
@@ -45,7 +48,9 @@ body {
 							<td><c:out value="${empleado.fecha_nacimiento}"></c:out></td>
 							<td><c:out value="${empleado.telefono}"></c:out></td>
 							<td><c:out value="${empleado.departamento.nombre}"></c:out></td>
-							<td><a href="Detalles/${empleado.id}">Detalles</a></td>
+							<td><a href="Detalles/${empleado.id}" class="btn btn-info">Detalles</a></td>
+							<td><a href="Modificar/${empleado.id}" class="btn btn-primary">Modificar</a></td>
+							<td><a href="Eliminar/${empleado.id}" class="btn btn-danger">Eliminar</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>

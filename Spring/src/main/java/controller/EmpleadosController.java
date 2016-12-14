@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import data.EmpleadoDetallesDAO;
 import data.IDepartamentoDAO;
 import model.Empleado;
+import model.EmpleadoDetalles;
+import service.EmpleadoService;
 import service.IEmpleadoService;
 
 @Controller
@@ -21,6 +24,9 @@ public class EmpleadosController {
 	
 	@Autowired
 	IDepartamentoDAO departamentoDAO;
+	
+	@Autowired
+	EmpleadoDetallesDAO	empleadodetallesDAO;
 
 	@RequestMapping("/")
 	public ModelAndView Lista(){
@@ -38,6 +44,50 @@ public class EmpleadosController {
 			e = null;
 		}
 		return new ModelAndView("Empleados/Detalles","empleado", e);
+	}
+	
+	@RequestMapping("Eliminar/{id}")
+	public String Eliminar(@PathVariable("id")String id){
+		try{
+			empleadoService.removeEmpleado(Long.parseLong(id));
+				
+			}
+			catch(org.hibernate.ObjectNotFoundException er){
+				
+			}
+		return "redirect:/Empleados/";
+	}
+	
+	@RequestMapping("NuevoDetalle/{id}")
+	public ModelAndView NuevoDetalle(@PathVariable("id")String id){
+			ModelAndView m = new ModelAndView("Empleados/NuevoDetalle");
+			EmpleadoDetalles det =new EmpleadoDetalles();
+			det.setId(Long.parseLong(id));
+			m.addObject("detalle",det);
+		return m;
+	}
+	
+	@RequestMapping("Modificar/{id}")
+	public ModelAndView ModificarVista(@PathVariable("id")String id){
+			ModelAndView m = new ModelAndView("Empleados/Modificar");
+			Empleado empleado = empleadoService.getEmpleado(Long.parseLong(id));
+			m.addObject("detalle",empleado);
+		return m;
+	}
+	
+	@RequestMapping(path="NuevoDetalle",method=RequestMethod.POST)
+	public String AltaDetalle(@ModelAttribute("detalle")EmpleadoDetalles detalle){
+			try{
+				Empleado e = empleadoService.getEmpleado(detalle.getId());
+				detalle.setEmple(e);
+				e.setDetalle(detalle);
+				empleadodetallesDAO.addEmpleado(detalle);
+				empleadoService.updateEmpleado(e);
+			}catch(org.hibernate.ObjectNotFoundException er){
+				
+			}	
+			
+		return "redirect:/Empleados/";
 	}
 	
 	@RequestMapping("Nuevo")

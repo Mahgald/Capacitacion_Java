@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,9 +24,30 @@ public class Empleado {
 	
 	private Date fecha_nacimiento;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	
+	@OneToOne(mappedBy="emple",orphanRemoval=true)
+	private EmpleadoDetalles detalle;
+	
+	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinColumn(name="idDepartamento")
 	private Departamento departamento;
+	
+	@ManyToMany(cascade={CascadeType.MERGE, CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@JoinTable(name="ReunionEmpleado",
+			joinColumns={@JoinColumn(name="idEmpleado")},
+			inverseJoinColumns={@JoinColumn(name="idReunion")})
+	private List<Reunion> listaReuniones = new ArrayList<Reunion>();
+
+	
+	public List<Reunion> getListaReuniones() {
+		return listaReuniones;
+	}
+
+
+	public void setListaReuniones(List<Reunion> listaReuniones) {
+		this.listaReuniones = listaReuniones;
+	}
+
 
 	public long getId() {
 		return id;
@@ -83,6 +106,15 @@ public class Empleado {
 
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
+	}
+	
+	public EmpleadoDetalles getDetalle() {
+		return detalle;
+	}
+
+
+	public void setDetalle(EmpleadoDetalles detalle) {
+		this.detalle = detalle;
 	}
 	
 }

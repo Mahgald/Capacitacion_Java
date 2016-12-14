@@ -77,6 +77,7 @@
 
 	<!-- DAOs -->
 	<bean id="empleadoDAO" class="data.EmpleadoDAO" />
+	<bean id="empleadodetallesDAO"	class="data.EmpleadoDetallesDAO"/>
 	<bean id="departamentoDAO" class="data.DepartamentoDAO" />
 	<bean id="reunionDAO" class="data.ReunionDAO" />
 	<bean id="empleadoService" class="service.EmpleadoService" />
