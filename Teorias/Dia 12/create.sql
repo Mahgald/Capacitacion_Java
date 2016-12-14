@@ -8,18 +8,18 @@ create TABLE Departamento (
 	primary key(id)
 );
 
-CREATE TABLE `Empleado` (
-  `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `apellido` varchar(50) DEFAULT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `telefono` varchar(15) NOT NULL,
+CREATE TABLE Empleado (
+  id bigint(10) NOT NULL AUTO_INCREMENT,
+  nombre varchar(50) DEFAULT NULL,
+  apellido varchar(50) DEFAULT NULL,
+  fecha_nacimiento date NOT NULL,
+  telefono varchar(15) NOT NULL,
   idDepartamento bigint(10) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (id),
 	foreign key (idDepartamento) References Departamento (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DEFAULT;
 
-CREATE TABLE DetallesEmpleado(
+CREATE TABLE EmpleadoDetalles(
 	id bigint(10) NOT NULL,
 	direccion varchar(100) NOT NULL,
 	provincia varchar(100) NULL,
