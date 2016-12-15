@@ -17,25 +17,37 @@ body {
 }
 </style>
 <body>
-	<form:form action="Modificar" method="post" modelAttribute="empleado">
+	<form:form action="../Modificar" method="post" modelAttribute="empleado">
+		<form:hidden path="id"/>
 		<form:label path="nombre">Nombre: </form:label>
-		<form:input path="nombre" value="empleado.nombre"/>
+		<form:input path="nombre" />
 		<br>
 
 		<form:label path="apellido">Apellido: </form:label>
-		<form:input path="apellido" value="empleado.apellido"/>
-		<br>
-
-		<form:label path="fecha_nacimiento">Fecha: </form:label>
-		<form:input path="fecha_nacimiento" value="empleado.fecha_nacimiento"/>
+		<form:input path="apellido"/>
 		<br>
 
 		<form:label path="telefono">Telefono: </form:label>
-		<form:input path="telefono" value="telefono"/>
+		<form:input path="telefono"/>
 		<br>
-
+		
+		<form:label path="fecha_nacimiento">Fecha de Nacimiento: </form:label>
+		<form:input path="fecha_nacimiento"/>
+		<br>
+	
+		<form:label path="detalle.direccion">Direccion: </form:label>
+		<form:input path="detalle.direccion"/>
+		<br>
+		
+		<form:label path="detalle.provincia">Provincia: </form:label>
+		<form:input path="detalle.provincia"/>
+		<br>
+		
+		<form:label path="detalle.pais">Pais: </form:label>
+		<form:input path="detalle.pais"/>
+		<br>
 		<form:select path="departamento.id">
-			<form:option value="0">Seleccione Departamento</form:option>
+			<form:option value="${empleado.departamento.id}">Seleccione Departamento</form:option>
 			<c:forEach items="${listaDptos}" var="dpto">
 				<form:option value="${dpto.id}">
 					<c:out value="${dpto.nombre}"></c:out>

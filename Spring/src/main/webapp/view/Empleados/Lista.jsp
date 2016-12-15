@@ -14,7 +14,7 @@
 
 <style type="text/css">
 body {
-	margin-top: 70px;
+	margin-top: 30px;
 }
 </style>
 <body>

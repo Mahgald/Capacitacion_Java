@@ -71,9 +71,23 @@ public class EmpleadosController {
 	public ModelAndView ModificarVista(@PathVariable("id")String id){
 			ModelAndView m = new ModelAndView("Empleados/Modificar");
 			Empleado empleado = empleadoService.getEmpleado(Long.parseLong(id));
-			m.addObject("detalle",empleado);
+			m.addObject("empleado",empleado);
+			m.addObject("listaDptos", departamentoDAO.ListarDepartamentos());
 		return m;
 	}
+	
+	
+	@RequestMapping(path="Modificar", method=RequestMethod.POST)
+	public String ModificarEmpleado(@ModelAttribute("empleado")Empleado empleado){
+			try {
+				empleadoService.updateEmpleado(empleado);
+				empleadodetallesDAO.updateEmpleado(empleado.getDetalle());
+			} catch(org.hibernate.ObjectNotFoundException er){
+				// TODO: handle exception
+			}
+		return "redirect:/Empleados/";
+	}
+	
 	
 	@RequestMapping(path="NuevoDetalle",method=RequestMethod.POST)
 	public String AltaDetalle(@ModelAttribute("detalle")EmpleadoDetalles detalle){
